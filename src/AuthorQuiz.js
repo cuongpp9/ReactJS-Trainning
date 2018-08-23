@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './stypes/bootstrap.min.css';
-import HelloWorld from './layouts/HelloWorld';
-import SumDemo from './layouts/SumDemo';
-import ClickCount from './layouts/ClickCount';
-import ClickHandles from './layouts/ClickHandles';
-
+import HelloWorld from './layouts/ComponentsDemo/HelloWorld';
+import SumDemo from './layouts/ComponentsDemo/SumDemo';
+import ClickCount from './layouts/ComponentsDemo/ClickCount';
+import ClickHandles from './layouts/ComponentsDemo/ClickHandles';
+import UnescapingContent from './layouts/ComponentsDemo/UnescapingContent';
+import ShowSum from './layouts/ComponentsDemo/ShowSum';
 
 class AuthorQuiz extends Component {
   render() {
@@ -14,7 +15,9 @@ class AuthorQuiz extends Component {
         <ClickCount />
         <HelloWorld now={new Date().toISOString()}/>
         <SumDemo {...propsSum}/>
-        <ClickHandles handleClick = {(event) => console.log(`${event} clicked`)}/>
+        <ClickHandles handleClick = {(...rest) => console.log(`${rest} clicked`) }/>
+        <UnescapingContent dangerous="<strong>HELLO</strong>" />
+        <ShowSum/>
       </div>
     );
   }
