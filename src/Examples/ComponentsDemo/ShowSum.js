@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Sum({a,b}){
-    return <h1>{a}+ {b} = {a+b}</h1>
+    return <h1>{a} + {b} = {a+b}</h1>
 }
 function ConditionalDisplay (props){
     return <div>{props.isVisible ? props.children : null}</div>
@@ -15,6 +15,10 @@ const state = {
 ConditionalDisplay.propTypes = {
     isVisible: PropTypes.bool.isRequired
 }
+
+// setInterval (()=>{
+//     state.showSum = ! state.showSum;
+// }, 2000);
 
 function ShowSum(){
     return <ConditionalDisplay isVisible = {state.showSum}>
