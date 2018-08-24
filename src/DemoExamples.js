@@ -6,6 +6,8 @@ import ClickCount from './Examples/ComponentsDemo/ClickCount';
 import ClickHandles from './Examples/ComponentsDemo/ClickHandles';
 import UnescapingContent from './Examples/ComponentsDemo/UnescapingContent';
 import ShowSum from './Examples/ComponentsDemo/ShowSum';
+import Events from './Examples/ComponentsDemo/Events';
+import PreventDefault from './Examples/ComponentsDemo/PreventDefault';
 
 class DemoExamples extends Component {
   render() {
@@ -18,6 +20,8 @@ class DemoExamples extends Component {
         <ClickHandles handleClick = {(...rest) => console.log(`${rest} clicked`) }/>
         <UnescapingContent dangerous="<strong>HELLO</strong>" />
         <ShowSum/>
+        <Events/>
+        <PreventDefault/>
       </div>
     );
   }

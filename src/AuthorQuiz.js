@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './stypes/bootstrap.min.css';
+import './stypes/AuthorQuiz.css';
 
 function Hero(){
   return (
@@ -10,7 +11,6 @@ function Hero(){
           <p>Select the book written by the author shown</p>
         </div>
       </div>
-      
     </div>
   )
 }
@@ -24,9 +24,14 @@ function Footer(){
           </p>
         </div>
       </div>
-      
     </div>
   )
+}
+
+function Book({title}){
+  return (<div className= "answer">
+  <h4>{title}</h4>
+  </div>);
 }
 
 function Turn({author, books}){
@@ -37,7 +42,7 @@ function Turn({author, books}){
       <img src = {author.imageUrl} className = "authorImage" alt="Author"/>
     </div>
     <div className="col-6">
-    {books.map((title) => <p>{title}</p>)}
+    {books.map((title, index) => <Book title = {title} key ={index}></Book>)}
     </div>
   </div>);
 }
