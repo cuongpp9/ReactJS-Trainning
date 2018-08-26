@@ -1,82 +1,84 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import DemoExamples from './DemoExamples';
+//import DemoExamples from './DemoExamples';
 import AuthorQuiz from './AuthorQuiz';
 import registerServiceWorker from './registerServiceWorker';
-import {shuffle, sample} from 'underscore'; 
+import { shuffle, sample } from 'underscore';
 
-const authors =[
+const authors = [
     {
         name: 'Mark Twain',
-        imageUrl: 'assets/MarkTwain.jpg',
+        imageUrl: '/assets/MarkTwain.jpg',
         imageSource: 'Wikimedia Commons',
-        books: ['The Adventures of Huckleberry Finn',
-                'Life on the Mississippi',
-                'Roughing It'
-        ],
+        books: ['The Adventures of Huckleberry Finn']
     },
     {
         name: 'Joseph Conrad',
-        imageUrl: 'assets/JosephConrad.PNG',
+        imageUrl: '/assets/JosephConrad.png',
         imageSource: 'Wikimedia Commons',
-        books: ['hihi',
-                'haha',
-                'doumama'
-        ],
+        books: ['Heart of Darkness']
     },
     {
-        name: 'J.K Rowling',
-        imageUrl: 'assets/J._K._Rowling.jpg',
+        name: 'J.K. Rowling',
+        imageUrl: '/assets/J._K._Rowling.jpg',
         imageSource: 'Wikimedia Commons',
-        books: ['abc',
-                '123',
-                '333'
-        ],
+        imageAttribution: 'Daniel Ogren',
+        books: ['Harry Potter and the Sorcerers Stone']
     },
     {
         name: 'Stephen King',
-        imageUrl: 'assets/Stephen_King.jpg',
+        imageUrl: '/assets/Stephen_King.jpg',
         imageSource: 'Wikimedia Commons',
-        books: ['a11',
-                'b12',
-                'cc112'
-        ],
+        imageAttribution: 'Pinguino',
+        books: ['The Shining', 'IT']
     },
     {
-        name: 'williamShakespeare',
-        imageUrl: 'assets/williamShakespeare.jpg',
+        name: 'Charles Dickens',
+        imageUrl: '/assets/charlesDickens.jpg',
         imageSource: 'Wikimedia Commons',
-        books: ['aasdd',
-                'aaasdsddd',
-                'caaaaa'
-        ],
+        books: ['David Copperfield', 'A Tale of Two Cities']
+    },
+    {
+        name: 'William Shakespeare',
+        imageUrl: '/assets/williamShakespeare.jpg',
+        imageSource: 'Wikimedia Commons',
+        books: ['Hamlet', 'Macbeth', 'Romeo and Juliet']
     }
 ];
 
-function getTurnData(authors){
-    console.log("authors",authors);
-    const allBooks = authors.reduce(function (p, c, i){
+function getTurnData(authors) {
+    console.log("authors", authors);
+    const allBooks = authors.reduce(function (p, c, i) {
         return p.concat(c.books);
-    },[]);
-    const fourRandomBooks = shuffle(allBooks).slice(0,4);
+    }, []);
+    const fourRandomBooks = shuffle(allBooks).slice(0, 4);
     const answer = sample(fourRandomBooks);
-    return{
+    return {
         books: fourRandomBooks,
         author: authors.find((authors) =>
-                authors.books.some((title)=>
+            authors.books.some((title) =>
                 title === answer))
     }
 }
 
 const state = {
-    turnData : getTurnData(authors)
+    turnData: getTurnData(authors),
+    highlight: '',
+}
+function onAnswerSelected(answer){
+    const isCorrect = state.turnData.author.books.some((book) => book === answer);
+    state.highlight = isCorrect? 'correct': 'wrong';
+    render();
 }
 
 //Author Quiz
-// ReactDOM.render(<AuthorQuiz {...state}/>, document.getElementById('root'));
-// registerServiceWorker();
+function render(){
+    ReactDOM.render(<AuthorQuiz {...state} onAnswerSelected= {onAnswerSelected}/>, document.getElementById('root'));
+}
+render();
+registerServiceWorker();
 
 ///DemoExample
-ReactDOM.render(<DemoExamples/>, document.getElementById('root'));
-registerServiceWorker();
+// ReactDOM.render(<DemoExamples/>, document.getElementById('root'));
+// registerServiceWorker();
