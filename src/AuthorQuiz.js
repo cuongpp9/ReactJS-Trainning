@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import Hero from './Layouts/Header';
 import Footer from './Layouts/Footer';
 import Turn from './Layouts/Turn';
-import Continute from './Layouts/Continute';
+import Continue from './Layouts/Continue';
 
 function AuthorQuiz ({turnData, highlight, onAnswerSelected, onContinue}){
   console.log(turnData);
@@ -14,7 +14,7 @@ function AuthorQuiz ({turnData, highlight, onAnswerSelected, onContinue}){
       <div className="container-fluid">
         <Hero/>
         <Turn {...turnData} highlight={highlight} onAnswerSelected={onAnswerSelected}/>
-        <Continute show={highlight === 'correct'} onContinue ={onContinue}/>
+        <Continue show={highlight === 'correct'} onContinue ={onContinue}/>
         <p><Link to ="add">Add an Author</Link></p>
         <Footer/>
       </div>
@@ -33,8 +33,8 @@ function mapDispatchToProps(dispatch){
     onAnswerSelected: (answer) =>{
       dispatch({type: 'ANSWER_SELECTED', answer})
     },
-    onContinute: () =>{
-      dispatch({type : 'CONTINUTE'})
+    onContinue: () =>{
+      dispatch({type : 'CONTINUE'})
     }
   };
 }

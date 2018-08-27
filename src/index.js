@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import *as Redux from 'redux';
 import *as ReactRedux from 'react-redux';
 import './index.css';
-import {BrowserRouter, Route, withRouter } from 'react-router-dom';
-//import DemoExamples from './DemoExamples';
+import {BrowserRouter, Route } from 'react-router-dom';
 import AuthorQuiz from './AuthorQuiz';
 import registerServiceWorker from './registerServiceWorker';
 import { shuffle, sample } from 'underscore';
@@ -76,28 +75,30 @@ function getTurnData(authors) {
 
 
 
-function reducer(state = {authors, turnData: getTurnData(authors), highlight:''}, action){
-    switch (action.type){
+function reducer(
+    state = { authors, turnData: getTurnData(authors), highlight: '' }, 
+    action) {
+      switch (action.type) {
         case 'ANSWER_SELECTED':
-            const isCorrect = state.turnData.author.books.some((book) => book === action.answer); //find books
-            return Object.assign({}, state, {
-                highlight: isCorrect ? 'correct' : 'wrong'
+          const isCorrect = state.turnData.author.books.some((book) => book === action.answer);
+          return Object.assign(
+            {}, 
+            state, { 
+              highlight: isCorrect ? 'correct' : 'wrong'
             });
-        case 'CONTINUTE':
-            return Object.assign({}, state, {
-                highlight: '',
-                turnData: getTurnData(state.authors)
+        case 'CONTINUE': 
+            return Object.assign({}, state, { 
+              highlight: '',
+              turnData: getTurnData(state.authors)
             });
         case 'ADD_AUTHOR':
             return Object.assign({}, state, {
-                authors: state.authors.concat([action.author]),
-            
+              authors: state.authors.concat([action.author])
             });
-            
-        default:
-            return state;
-    }
+        default: return state;
+      }
 }
+
 let store = Redux.createStore(reducer);
 
 
@@ -106,11 +107,11 @@ ReactDOM.render(
     <BrowserRouter>
         <ReactRedux.Provider store={store}>
             <React.Fragment>
-            <Route exact path = "/" component = {AuthorQuiz}/>
-            <Route path = "/add" component = {AddAuthorForm}/>
-            <Route path = "/demo" component = {DemoExamples}/>
-        </React.Fragment>
-        </ReactRedux.Provider>);
+                <Route exact path = "/" component = {AuthorQuiz}/>
+                <Route path = "/add" component = {AddAuthorForm}/>
+                <Route path = "/demo" component = {DemoExamples}/>
+            </React.Fragment>
+        </ReactRedux.Provider>
     </BrowserRouter>, document.getElementById('root'));
 
 registerServiceWorker();
