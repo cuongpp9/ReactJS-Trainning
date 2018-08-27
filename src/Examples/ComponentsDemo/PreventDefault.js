@@ -10,6 +10,7 @@ class PreventDefault extends Component{
 
     onChar(event){
         this.setState({content: event.target.value});
+        console.log(event);
     }
 
     onGoTime (event) {

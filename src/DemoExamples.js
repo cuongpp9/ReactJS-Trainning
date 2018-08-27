@@ -8,6 +8,7 @@ import UnescapingContent from './Examples/ComponentsDemo/UnescapingContent';
 import ShowSum from './Examples/ComponentsDemo/ShowSum';
 import Events from './Examples/ComponentsDemo/Events';
 import PreventDefault from './Examples/ComponentsDemo/PreventDefault';
+import FormDemo from './Examples/ComponentsDemo/FormDemo';
 
 class DemoExamples extends Component {
   render() {
@@ -22,6 +23,7 @@ class DemoExamples extends Component {
         <ShowSum/>
         <Events/>
         <PreventDefault/>
+        <FormDemo />
       </div>
     );
   }

@@ -1,82 +1,34 @@
 import React from 'react';
 import './stypes/bootstrap.min.css';
 import './stypes/AuthorQuiz.css';
-import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
+import Hero from './Layouts/Header';
+import Footer from './Layouts/Footer';
+import Turn from './Layouts/Turn';
 
-function Hero(){
-  return (
-    <div className = "row">
-      <div className="jumbotron col-10 offset-1">
-        <div className="container">
-          <h1>Author Quiz</h1>
-          <p>Select the book written by the author shown</p>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function Footer(){
-  return (
-    <div className = "row" id = "footer">
-      <div className="col-112">
-        <div className="container">
-          <p className= "text-muted credit">All image are from <a href="https://commons.wikimedia.org/wiki/Main_Page">Wikimedia Commons</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function Book({title, onClick}){
-  return (<div className= "answer" onClick = {() =>{onClick(title)}}>
-  <h4>{title}</h4>
-  </div>);
-}
-
-function Turn({author, books, highlight, onAnswerSelected}){
-  function highlightToBgColor(highlight){
-    const mapping = {
-      'none' : '',
-      'correct': 'green',
-      'wrong' : 'red'
-    }
-    return mapping[highlight];
-  }
-  console.log(author);
-  return(<div className="row turn" style = {{backgroundColor: highlightToBgColor(highlight)}}>
-    
-    <div className="col-4 offset-1">
-      <img src = {author.imageUrl} className = "authorImage" alt="Author"/>
-    </div>
-    <div className="col-6">
-    {books.map((title, index) => <Book title = {title} key ={index} onClick={onAnswerSelected}/>)}
-    </div>
-  </div>);
-}
-
-function AuthorQuiz ({turnData, highlight, onAnswerSelected}){
+function AuthorQuiz ({turnData, highlight, onAnswerSelected, onContinue}){
   console.log(turnData);
     return (
       <div className="container-fluid">
         <Hero/>
         <Turn {...turnData} highlight={highlight} onAnswerSelected={onAnswerSelected}/>
+        <Continue show={highlight === 'correct'} onContinue ={onContinue}/>
+        <p><Link to ="add">Add an Author</Link></p>
         <Footer/>
       </div>
     );
 }
 
-Turn.propTypes = {
-  author: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    imageUrl: PropTypes.string.isRequired,
-    imageSource: PropTypes.string.isRequired,
-    books: PropTypes.arrayOf(PropTypes.string).isRequired
-  }),
-  books: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onAnswerSelected: PropTypes.func.isRequired,
-  highlight: PropTypes.string.isRequired
-};
+function Continue ({show, onContinue}){
+  return (
+    <div className = "row continue">
+      {
+        show ?
+        <button className = "btn btn-primary btn-lg float-right" onClick={onContinue}>Continue</button>
+        : null
+      }
+    </div>
+  )
+}
 
 export default AuthorQuiz;
