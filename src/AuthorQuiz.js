@@ -2,6 +2,7 @@ import React from 'react';
 import './stypes/bootstrap.min.css';
 import './stypes/AuthorQuiz.css';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 import Hero from './Layouts/Header';
 import Footer from './Layouts/Footer';
 import Turn from './Layouts/Turn';
@@ -20,4 +21,22 @@ function AuthorQuiz ({turnData, highlight, onAnswerSelected, onContinue}){
     );
 }
 
-export default AuthorQuiz;
+function mapStateToProps(state){
+  return {
+    turnData: state.turnData,
+    highlight: state.highlight
+  };
+}
+
+function mapDispatchToProps(dispatch){
+  return {
+    onAnswerSelected: (answer) =>{
+      dispatch({type: 'ANSWER_SELECTED', answer})
+    },
+    onContinute: () =>{
+      dispatch({type : 'CONTINUTE'})
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (AuthorQuiz);
