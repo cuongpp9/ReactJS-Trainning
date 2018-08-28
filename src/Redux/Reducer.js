@@ -1,4 +1,4 @@
-import getTurnData from './utilities';
+import getTurnData from './getTurnData';
 import authors from './../utilities/Authors';
 import *as types from './types';
 

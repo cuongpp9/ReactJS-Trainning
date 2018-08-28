@@ -22,7 +22,6 @@ function AuthorQuiz ({turnData, highlight, onAnswerSelected, onContinue}){
 }
 
 function mapStateToProps(state){
-  console.log(state.turnData);
   return {
     turnData: state.turnData,
     highlight: state.highlight
