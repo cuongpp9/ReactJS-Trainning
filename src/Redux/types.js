@@ -1,3 +1,3 @@
 export const ANSWER_SELECTED = 'ANSWER_SELECTED';
-export const CONTINUE = 'CONTINUE';
+export const CONTINUE_AUTHOR = 'CONTINUE_AUTHOR';
 export const ADD_AUTHOR = 'ADD_AUTHOR';

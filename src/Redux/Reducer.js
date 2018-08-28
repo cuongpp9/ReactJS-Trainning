@@ -13,13 +13,15 @@ const reducer = (
     action) => {
       switch (action.type) {
         case types.ANSWER_SELECTED:
+      
+        console.log("state",state);
           const isCorrect = state.turnData.author.books.some((book) => book === action.answer);
           return Object.assign(
             {}, 
             state, { 
               highlight: isCorrect ? 'correct' : 'wrong'
             });
-        case types.CONTINUE: 
+        case types.CONTINUE_AUTHOR:
             return Object.assign({}, state, { 
               highlight: '',
               turnData: getTurnData(state.authors)

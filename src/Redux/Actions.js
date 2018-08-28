@@ -9,7 +9,7 @@ export const answerSelected = (answer) =>{
 
 export const continueAuthorQuiz = () =>{
     return{
-        type: types.CONTINUE
+        type: types.CONTINUE_AUTHOR
     }
 }
 
