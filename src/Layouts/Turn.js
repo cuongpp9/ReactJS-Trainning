@@ -11,7 +11,6 @@ function Turn({author, books, highlight, onAnswerSelected}){
       }
       return mapping[highlight];
     }
-    console.log(author);
     return(<div className="row turn" style = {{backgroundColor: highlightToBgColor(highlight)}}>
       <div className="col-4 offset-1">
         <img src = {author.imageUrl} className = "authorImage" alt="Author"/>
