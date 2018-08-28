@@ -13,8 +13,6 @@ const reducer = (
     action) => {
       switch (action.type) {
         case types.ANSWER_SELECTED:
-      
-        console.log("state",state);
           const isCorrect = state.turnData.author.books.some((book) => book === action.answer);
           return Object.assign(
             {}, 
@@ -30,7 +28,8 @@ const reducer = (
             return Object.assign({}, state, {
               authors: state.authors.concat([action.author])
             });
-        default: return state;
+        default:
+          return state;
       }
 }
 export default reducer;

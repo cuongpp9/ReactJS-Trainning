@@ -9,6 +9,8 @@ import Turn from './Layouts/Turn';
 import Continue from './Layouts/Continue';
 import *as actions from './Redux/Actions';
 
+
+
 function AuthorQuiz ({turnData, highlight, onAnswerSelected, onContinue}){
     return (
       <div className="container-fluid">
@@ -21,14 +23,14 @@ function AuthorQuiz ({turnData, highlight, onAnswerSelected, onContinue}){
     );
 }
 
-function mapStateToProps(state){
+const mapStateToProps = (state) =>{
   return {
     turnData: state.turnData,
     highlight: state.highlight
   };
 }
 
-function mapDispatchToProps(dispatch){
+const mapDispatchToProps = (dispatch) =>{
   return {
     onAnswerSelected: (answer) =>{
       dispatch(actions.answerSelected(answer))
