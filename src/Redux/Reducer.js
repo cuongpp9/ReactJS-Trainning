@@ -1,8 +1,8 @@
-import getTurnData from './getTurnData';
+import getTurnData from './../utilities/getTurnData';
 import authors from './../utilities/Authors';
 import *as types from './types';
 
-const initialState = { 
+const initialState = {
     authors, 
     turnData: getTurnData(authors),
     highlight: '' 
@@ -16,15 +16,16 @@ const reducer = (
           const isCorrect = state.turnData.author.books.some((book) => book === action.answer);
           return Object.assign(
             {}, 
-            state, { 
+            state, {
               highlight: isCorrect ? 'correct' : 'wrong'
             });
         case types.CONTINUE_AUTHOR:
-            return Object.assign({}, state, { 
+            return Object.assign({}, state, {
               highlight: '',
               turnData: getTurnData(state.authors)
             });
         case types.ADD_AUTHOR:
+        console.log(action.author);
             return Object.assign({}, state, {
               authors: state.authors.concat([action.author])
             });

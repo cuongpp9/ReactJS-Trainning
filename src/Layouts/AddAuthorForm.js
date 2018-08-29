@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import './../stypes/AddAuthorsForm.css';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import *as actions from './../Redux/Actions'
 
 
@@ -26,7 +26,7 @@ class AuthorForm extends Component {
         this.props.onAddAuthor(this.state);
     }
 
-    handleAddBook = (event) =>{
+    handleAddBook = (event) => {
         this.setState({
             books: this.state.books.concat([this.state.bookTemp]),
             bookTemp: ''
@@ -46,9 +46,9 @@ class AuthorForm extends Component {
                 </div>
                 <div className="AddAuthorForm_input">
                     <label htmlFor="bookTemp">Books</label>
-                    {this.state.books.map((book, index) => <p key ={index}>{book}</p>)}
-                    <input type = "text" name ="bookTemp" value = {this.state.bookTemp} onChange={this.onFieldChange}/>
-                    <input type = "button" value = "+" onClick = {this.handleAddBook}/>
+                    {this.state.books.map((book, index) => <p key={index}>{book}</p>)}
+                    <input type="text" name="bookTemp" value={this.state.bookTemp} onChange={this.onFieldChange} />
+                    <input type="button" value="+" onClick={this.handleAddBook} />
                 </div>
                 <input type="submit" value="Add" />
             </form>);
@@ -62,13 +62,13 @@ function AddAuthorsForm({ match, onAddAuthor }) {
     </div>;
 }
 
-function mapDispatchToProps(dispatch, props){
+function mapDispatchToProps(dispatch, props) {
     return {
-        onAddAuthor: (author) =>{
+        onAddAuthor: (author) => {
             dispatch(actions.addAuthor(author));
             props.history.push('/');
         }
     };
 }
 
-export default  withRouter(connect(null, mapDispatchToProps) (AddAuthorsForm));
+export default withRouter(connect(null, mapDispatchToProps)(AddAuthorsForm));
